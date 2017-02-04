@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qinyum.mapper.Pay_CURD">
+	<select id="selectAll" resultType="com.qinyum.pojo.Pay">
+		select * from pay
+	</select>
+
+	<insert id="insert" parameterType="com.qinyum.pojo.Pay">
+		insert pay(
+		<if test="name != null">name,</if>
+		<if test="sprice != null">sprice,</if>
+		<if test="cause != null">cause,</if>
+		<if test="quality != null">quality,</if>
+		<if test="sumprice != null">sumprice,</if>
+		<if test="date != null">date,</if>
+		<if test="description != null">description</if>
+		) values(
+		<if test="name != null">#{name},</if>
+		<if test="sprice != null">#{sprice},</if>
+		<if test="cause != null">#{cause},</if>
+		<if test="quality != null">#{quality},</if>
+		<if test="sumprice != null">#{sumprice},</if>
+		<if test="date != null">#{date},</if>
+		<if test="description != null">#{description}</if>
+		)
+	</insert>
+	<select id="sumPay" resultType="double">
+		select sum(sumprice) from pay
+	</select>
+</mapper>
